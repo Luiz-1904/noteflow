@@ -2,6 +2,7 @@ services:
   - type: web
     name: noteflow
     runtime: docker
+    plan: free
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /health
@@ -17,5 +18,6 @@ services:
 
 databases:
   - name: noteflow-db
+    plan: free
     databaseName: noteflow
     user: noteflow
