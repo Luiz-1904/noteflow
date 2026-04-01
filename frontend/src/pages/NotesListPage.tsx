@@ -46,54 +46,52 @@ export default function NotesListPage() {
     <>
       <section className="hero panel">
         <div>
-          <p className="eyebrow">Seu espaço de notas</p>
-          <h1>Uma notes app que parece produto, não exercício.</h1>
+          <p className="eyebrow">Workspace</p>
+          <h1>Notes built for flow, not clutter.</h1>
           <p className="hero-copy">
-            Busca instantânea, persistência real e uma interface pensada para apresentar arquitetura
-            full-stack com clareza.
+            A focused space for drafting, reviewing, and finding notes fast across desktop and
+            mobile.
           </p>
           <div className="hero-badges" aria-label="Principais recursos">
-            <span className="hero-badge">Busca por título</span>
-            <span className="hero-badge">Persistência em banco</span>
-            <span className="hero-badge">CRUD completo</span>
+            <span className="hero-badge">Instant search</span>
+            <span className="hero-badge">Persistent storage</span>
+            <span className="hero-badge">Clean CRUD flow</span>
           </div>
         </div>
         <div className="hero-side">
           <SearchInput value={searchValue} onChange={setSearchValue} />
-          <div className="hero-stats" aria-label="Resumo de notas">
+          <div className="hero-stats" aria-label="Notes summary">
             <article className="stat-card">
-              <span className="stat-label">Notas salvas</span>
+              <span className="stat-label">Saved notes</span>
               <strong className="stat-value">{notes.length}</strong>
             </article>
             <article className="stat-card">
-              <span className="stat-label">Palavras no acervo</span>
+              <span className="stat-label">Words stored</span>
               <strong className="stat-value">{totalWords}</strong>
             </article>
             <article className="stat-card stat-card-highlight">
-              <span className="stat-label">Última atividade</span>
+              <span className="stat-label">Latest entry</span>
               <strong className="stat-value">
-                {latestNote ? latestNote.title : 'Sem notas ainda'}
+                {latestNote ? latestNote.title : 'No notes yet'}
               </strong>
             </article>
           </div>
         </div>
       </section>
 
-      {deleteError ? (
-        <ErrorState message={deleteError} onRetry={() => void reload()} />
-      ) : null}
+      {deleteError ? <ErrorState message={deleteError} onRetry={() => void reload()} /> : null}
 
-      {isLoading ? <LoadingSpinner label="Carregando notas..." /> : null}
+      {isLoading ? <LoadingSpinner label="Loading notes..." /> : null}
 
       {!isLoading && error ? <ErrorState message={error} onRetry={() => void reload()} /> : null}
 
       {!isLoading && !error && notes.length === 0 ? (
         <EmptyState
-          title={searchValue ? 'Nenhum resultado encontrado' : 'Nenhuma nota ainda'}
+          title={searchValue ? 'No results found' : 'No notes yet'}
           description={
             searchValue
-              ? 'Tente outro termo de busca para localizar a nota pelo título.'
-              : 'Crie sua primeira nota para começar a organizar suas ideias.'
+              ? 'Try a different title or clear the search to browse everything again.'
+              : 'Create your first note and start building a searchable working archive.'
           }
         />
       ) : null}
@@ -103,11 +101,11 @@ export default function NotesListPage() {
           <div className="notes-column-main">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">Coleção</p>
-                <h2>Notas recentes</h2>
+                <p className="eyebrow">Library</p>
+                <h2>Recent notes</h2>
               </div>
               <p className="section-copy">
-                Ordenadas por atualização para privilegiar o que está vivo no seu fluxo.
+                Ordered by recent activity so the notes you are actively shaping stay on top.
               </p>
             </div>
             <NoteList notes={notes} onDelete={setNoteToDelete} />
@@ -116,15 +114,15 @@ export default function NotesListPage() {
           <aside className="notes-column-side panel">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">Resumo visual</p>
-                <h2>O que este projeto comunica</h2>
+                <p className="eyebrow">Overview</p>
+                <h2>Designed for real use</h2>
               </div>
             </div>
             <ul className="feature-list">
-              <li>Integra frontend, API e banco com contrato JSON simples e limpo.</li>
-              <li>Mostra estados de loading, erro, vazio e mutações sem refresh manual.</li>
-              <li>Tem layout mobile-first, contraste forte e tipografia com hierarquia.</li>
-              <li>É pequeno o bastante para terminar e sólido o bastante para entrar no currículo.</li>
+              <li>Fast title search makes note retrieval feel immediate.</li>
+              <li>Every mutation reflects in the interface without manual refresh.</li>
+              <li>The layout stays readable and touch-friendly on smaller screens.</li>
+              <li>The visual system is compact, intentional, and built to feel product-ready.</li>
             </ul>
           </aside>
         </section>

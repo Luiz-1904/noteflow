@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -37,6 +38,12 @@ func main() {
 	mux.HandleFunc("GET /health", handler.Health)
 	mux.HandleFunc("/notes", noteHandler.ListOrCreate)
 	mux.HandleFunc("/notes/", noteHandler.ByID)
+
+	if cfg.StaticDir != "" {
+		if info, err := os.Stat(cfg.StaticDir); err == nil && info.IsDir() {
+			mux.Handle("/", handler.Static(cfg.StaticDir))
+		}
+	}
 
 	server := &http.Server{
 		Addr:         ":" + cfg.Port,

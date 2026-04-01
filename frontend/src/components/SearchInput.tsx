@@ -7,11 +7,11 @@ export function SearchInput({
 }) {
   return (
     <label className="search-field">
-      <span>Buscar por título</span>
+      <span>Search by title</span>
       <input
-        aria-label="Buscar notas por título"
+        aria-label="Search notes by title"
         onChange={(event) => onChange(event.target.value)}
-        placeholder="Ex.: estudar go"
+        placeholder="Search notes, ideas, or drafts"
         type="search"
         value={value}
       />

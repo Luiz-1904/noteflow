@@ -28,10 +28,10 @@ export function NoteForm({
 
     const nextErrors: { title?: string; content?: string } = {};
     if (!title.trim()) {
-      nextErrors.title = 'Informe um título.';
+      nextErrors.title = 'Add a title.';
     }
     if (!content.trim()) {
-      nextErrors.content = 'Informe um conteúdo.';
+      nextErrors.content = 'Add some content.';
     }
 
     setErrors(nextErrors);
@@ -50,32 +50,32 @@ export function NoteForm({
       <div className="form-intro">
         <div>
           <p className="eyebrow">Editor</p>
-          <h2>Escreva com clareza</h2>
+          <h2>Write with structure</h2>
         </div>
         <p className="form-copy">
-          Use um título direto e um conteúdo escaneável. Esse layout foi pensado para funcionar bem
-          em desktop e mobile.
+          Keep titles sharp, keep the body readable, and treat every note like a useful working
+          document.
         </p>
       </div>
 
       <div className="field-group">
-        <label htmlFor="title">Título</label>
+        <label htmlFor="title">Title</label>
         <input
           id="title"
           maxLength={120}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="Ex.: Estudar Go"
+          placeholder="Weekly planning, API notes, sprint retro..."
           value={title}
         />
         {errors.title ? <p className="field-error">{errors.title}</p> : null}
       </div>
 
       <div className="field-group">
-        <label htmlFor="content">Conteúdo</label>
+        <label htmlFor="content">Content</label>
         <textarea
           id="content"
           onChange={(event) => setContent(event.target.value)}
-          placeholder="Escreva sua nota aqui."
+          placeholder="Write the full note here."
           rows={10}
           value={content}
         />
@@ -85,21 +85,20 @@ export function NoteForm({
       {serverError ? <p className="form-error" role="alert">{serverError}</p> : null}
 
       <div className="form-tip-card">
-        <strong>Dica de portfólio</strong>
+        <strong>Writing pattern</strong>
         <p>
-          Mostre hierarquia no texto: quebre linhas, use blocos curtos e deixe cada nota com um
-          propósito claro.
+          Break ideas into short sections so the same note works well in quick scans and deep reads.
         </p>
       </div>
 
       <div className="form-actions">
         {onCancel ? (
           <button className="button button-secondary" disabled={isSubmitting} onClick={onCancel} type="button">
-            Cancelar
+            Cancel
           </button>
         ) : null}
         <button className="button button-primary" disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Salvando...' : submitLabel}
+          {isSubmitting ? 'Saving...' : submitLabel}
         </button>
       </div>
     </form>

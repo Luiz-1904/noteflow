@@ -41,14 +41,14 @@ export default function NoteEditPage() {
       const updated = await notesAPI.update(id, payload);
       navigate(`/notes/${updated.id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Falha ao atualizar a nota.');
+      setError(err instanceof Error ? err.message : 'Failed to update note.');
     } finally {
       setIsSubmitting(false);
     }
   }
 
   if (isLoading) {
-    return <LoadingSpinner label="Carregando dados da nota..." />;
+    return <LoadingSpinner label="Loading note..." />;
   }
 
   if (error && !note) {
@@ -56,21 +56,20 @@ export default function NoteEditPage() {
   }
 
   if (!note) {
-    return <ErrorState message="Nota não encontrada." />;
+    return <ErrorState message="Note not found." />;
   }
 
   return (
     <section className="editor-layout">
       <div className="panel editor-sidebar">
-        <p className="eyebrow">Editar nota</p>
+        <p className="eyebrow">Edit note</p>
         <h1>{note.title}</h1>
         <p className="editor-copy">
-          Altere título e conteúdo com retorno imediato na UI. O backend atualiza `updated_at` e a
-          listagem reflete a mudança sem refresh manual.
+          Refine the structure, update the wording, and save changes with immediate feedback.
         </p>
         <div className="editor-aside-card">
-          <span className="stat-label">Ação</span>
-          <strong className="stat-value">Update com feedback direto</strong>
+          <span className="stat-label">Mode</span>
+          <strong className="stat-value">Live editing</strong>
         </div>
       </div>
       <NoteForm
@@ -79,7 +78,7 @@ export default function NoteEditPage() {
         onCancel={() => navigate(`/notes/${note.id}`)}
         onSubmit={handleSubmit}
         serverError={error}
-        submitLabel="Salvar alterações"
+        submitLabel="Save changes"
       />
     </section>
   );

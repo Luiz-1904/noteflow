@@ -25,7 +25,7 @@ export default function NoteDetailPage() {
       const data = await notesAPI.get(id);
       setNote(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Falha ao carregar a nota.');
+      setError(err instanceof Error ? err.message : 'Failed to load note.');
     } finally {
       setIsLoading(false);
     }
@@ -45,14 +45,14 @@ export default function NoteDetailPage() {
       await notesAPI.remove(note.id);
       navigate('/');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Falha ao excluir a nota.');
+      setError(err instanceof Error ? err.message : 'Failed to delete note.');
       setIsDeleting(false);
       setShowDeleteDialog(false);
     }
   }
 
   if (isLoading) {
-    return <LoadingSpinner label="Carregando nota..." />;
+    return <LoadingSpinner label="Loading note..." />;
   }
 
   if (error) {
@@ -60,7 +60,7 @@ export default function NoteDetailPage() {
   }
 
   if (!note) {
-    return <ErrorState message="Nota não encontrada." />;
+    return <ErrorState message="Note not found." />;
   }
 
   return (
@@ -68,39 +68,38 @@ export default function NoteDetailPage() {
       <article className="panel note-detail">
         <div className="detail-topbar">
           <Link className="button button-secondary" to="/">
-            Voltar
+            Back
           </Link>
           <div className="detail-actions">
             <Link className="button button-secondary" to={`/notes/${note.id}/edit`}>
-              Editar
+              Edit
             </Link>
             <button className="button button-danger" onClick={() => setShowDeleteDialog(true)} type="button">
-              Excluir
+              Delete
             </button>
           </div>
         </div>
 
         <div className="page-heading">
-          <p className="eyebrow">Detalhe da nota</p>
+          <p className="eyebrow">Note</p>
           <h1>{note.title}</h1>
           <p className="detail-copy">
-            Visualização completa com foco em leitura, datas relevantes e ações de manutenção sempre
-            acessíveis.
+            Full-length reading view with editing and maintenance actions kept close at hand.
           </p>
         </div>
 
         <dl className="detail-metadata">
           <div>
-            <dt>Criada em</dt>
+            <dt>Created</dt>
             <dd>{formatDate(note.created_at)}</dd>
           </div>
           <div>
-            <dt>Atualizada em</dt>
+            <dt>Updated</dt>
             <dd>{formatDate(note.updated_at)}</dd>
           </div>
           <div>
-            <dt>Tamanho</dt>
-            <dd>{note.content.trim().split(/\s+/).filter(Boolean).length || 1} palavras</dd>
+            <dt>Length</dt>
+            <dd>{note.content.trim().split(/\s+/).filter(Boolean).length || 1} words</dd>
           </div>
         </dl>
 

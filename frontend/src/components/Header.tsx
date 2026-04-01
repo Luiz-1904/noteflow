@@ -6,14 +6,14 @@ export function Header() {
   return (
     <header className="app-header">
       <div className="brand-block">
-        <p className="brand-kicker">Portfolio build</p>
+        <p className="brand-kicker">Personal workspace</p>
         <Link className="brand-link" to="/">
           <BrandMark />
           <span className="brand-text">NoteFlow</span>
         </Link>
         <p className="header-copy">
-          Um CRUD de notas com cara de produto: React + TypeScript no cliente, Go + PostgreSQL na
-          API.
+          Capture ideas, keep context close, and move through your notes with a fast full-stack
+          workflow.
         </p>
       </div>
       <nav className="header-nav" aria-label="Primary navigation">
@@ -21,7 +21,7 @@ export function Header() {
           Dashboard
         </NavLink>
         <NavLink className="button button-primary" to="/notes/new">
-          Nova nota
+          New note
         </NavLink>
       </nav>
     </header>

@@ -13,6 +13,7 @@ type Config struct {
 	Environment string
 	DatabaseURL string
 	CORSOrigin  string
+	StaticDir   string
 }
 
 func Load() (Config, error) {
@@ -23,6 +24,7 @@ func Load() (Config, error) {
 		Environment: getEnv("APP_ENV", "development"),
 		DatabaseURL: os.Getenv("DATABASE_URL"),
 		CORSOrigin:  getEnv("CORS_ORIGIN", "http://localhost:5173"),
+		StaticDir:   getEnv("STATIC_DIR", ""),
 	}
 
 	if cfg.DatabaseURL == "" {

@@ -18,19 +18,19 @@ export function NoteCard({
     <article className="note-card">
       <div className="note-card-header">
         <div>
-          <p className="eyebrow">Atualizada em {formatDate(note.updated_at)}</p>
+          <p className="eyebrow">Updated {formatDate(note.updated_at)}</p>
           <h2>{note.title}</h2>
           <div className="note-card-meta">
-            <span>{Math.max(wordCount, 1)} palavras</span>
-            <span>Nota ativa</span>
+            <span>{Math.max(wordCount, 1)} words</span>
+            <span>Ready to review</span>
           </div>
         </div>
         <div className="note-card-actions">
           <Link className="button button-secondary" to={`/notes/${note.id}`}>
-            Abrir
+            Open
           </Link>
           <button className="button button-danger" onClick={() => onDelete(note)} type="button">
-            Excluir
+            Delete
           </button>
         </div>
       </div>

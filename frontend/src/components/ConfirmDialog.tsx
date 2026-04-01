@@ -43,16 +43,16 @@ export function ConfirmDialog({
         className="dialog"
         role="dialog"
       >
-        <h2 id="confirm-delete-title">Excluir nota</h2>
+        <h2 id="confirm-delete-title">Delete note</h2>
         <p id="confirm-delete-description">
-          A nota <strong>{note.title}</strong> será removida permanentemente.
+          <strong>{note.title}</strong> will be permanently removed.
         </p>
         <div className="dialog-actions">
           <button className="button button-secondary" disabled={isPending} onClick={onCancel} type="button">
-            Cancelar
+            Cancel
           </button>
           <button className="button button-danger" disabled={isPending} onClick={onConfirm} type="button">
-            {isPending ? 'Excluindo...' : 'Confirmar exclusão'}
+            {isPending ? 'Deleting...' : 'Delete note'}
           </button>
         </div>
       </div>

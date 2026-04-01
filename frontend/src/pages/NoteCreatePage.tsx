@@ -18,7 +18,7 @@ export default function NoteCreatePage() {
       const note = await notesAPI.create(payload);
       navigate(`/notes/${note.id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Falha ao criar a nota.');
+      setError(err instanceof Error ? err.message : 'Failed to create note.');
     } finally {
       setIsSubmitting(false);
     }
@@ -27,15 +27,14 @@ export default function NoteCreatePage() {
   return (
     <section className="editor-layout">
       <div className="panel editor-sidebar">
-        <p className="eyebrow">Nova nota</p>
-        <h1>Transforme uma ideia solta em algo consultável.</h1>
+        <p className="eyebrow">New note</p>
+        <h1>Start a note worth coming back to.</h1>
         <p className="editor-copy">
-          Essa tela foi desenhada para parecer uma ferramenta real: foco na escrita, ações claras e
-          uso confortável em qualquer largura de tela.
+          Draft quickly, keep the structure clean, and save without breaking your flow.
         </p>
         <div className="editor-aside-card">
-          <span className="stat-label">Fluxo</span>
-          <strong className="stat-value">Criar → Persistir → Exibir</strong>
+          <span className="stat-label">Workflow</span>
+          <strong className="stat-value">Compose → Save → Review</strong>
         </div>
       </div>
       <NoteForm
@@ -43,7 +42,7 @@ export default function NoteCreatePage() {
         onCancel={() => navigate('/')}
         onSubmit={handleSubmit}
         serverError={error}
-        submitLabel="Salvar nota"
+        submitLabel="Save note"
       />
     </section>
   );

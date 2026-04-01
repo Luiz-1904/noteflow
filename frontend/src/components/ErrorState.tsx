@@ -7,11 +7,11 @@ export function ErrorState({
 }) {
   return (
     <section className="status-card error-card" role="alert">
-      <h2>Algo falhou</h2>
+      <h2>Something went wrong</h2>
       <p>{message}</p>
       {onRetry ? (
         <button className="button button-secondary" onClick={onRetry} type="button">
-          Tentar novamente
+          Try again
         </button>
       ) : null}
     </section>
